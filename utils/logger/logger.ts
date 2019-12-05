@@ -1,6 +1,7 @@
 import * as chalk from 'chalk';
 
 enum LogLevel {
+  vverbose = 5,
   verbose = 4,
   debug = 3,
   progress = 2,
@@ -9,6 +10,8 @@ enum LogLevel {
 
 function logColor(logLevel: LogLevel): chalk.Chalk {
   switch(logLevel) {
+    case LogLevel.vverbose:
+      return chalk.magenta;
     case LogLevel.verbose:
       return chalk.blue;
     case LogLevel.debug:
@@ -24,7 +27,7 @@ class Logger {
   private logLevel: LogLevel;
   constructor(rawLogLevel: string, private colors: boolean) {
     this.logLevel = (<any>LogLevel)[rawLogLevel] || LogLevel.solution;
-    console.log(this.logLevel);
+    console.log('loglevel', this.logLevel);
   }
 
   private logIfLevel(logLevel: LogLevel): (...args: any[]) => void {
@@ -44,6 +47,7 @@ class Logger {
   public progress = this.logIfLevel(LogLevel.progress);
   public solution = this.logIfLevel(LogLevel.solution);
   public verbose = this.logIfLevel(LogLevel.verbose);
+  public vverbose = this.logIfLevel(LogLevel.vverbose);
 }
 
 export { Logger };
