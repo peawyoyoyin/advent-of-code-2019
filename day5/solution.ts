@@ -10,11 +10,11 @@ const rawInput = fs.readFileSync(inputPath).toString().trim();
 const opcodes = rawInput.split(',').map( opcode => parseInt(opcode) );
 
 logger.verbose('opcodes length: ', opcodes.length);
-// // part 1
-// logger.progress('=== part 1 ===');
-// const machine = new Machine(opcodes, [1]);
-// machine.run();
-// logger.solution(machine.result());
+// part 1
+logger.progress('=== part 1 ===');
+const machine = new Machine(opcodes, [1]);
+machine.run();
+logger.solution(machine.result());
 
 // part 2
 logger.progress('=== part 2 ===');
